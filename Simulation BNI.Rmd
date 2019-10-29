@@ -1,0 +1,96 @@
+---
+title: "BNI simulation testing"
+author: "Maud Bernard-Verdier"
+date: "10/29/2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Exploring the behaviour of the Biotic Novelty Index
+
+This document recreates the simulations presented in Supplementary Material 2 of the article "A multidimensional framework for measuring biotic novelty: How novel is a community?" by Schittko, Bernard-verdier et al., 2019.
+
+```{r library, message = FALSE}
+
+# library
+  require(FD)
+  require(proxy)
+  require(fields)
+# Load all scripts and simulation results
+load(file= "data_BNI_simulations.Rdata")
+```
+
+
+## Simulation results: 
+
+By default, the R script calculating the simulations are silenced as not to slow down the document. Figures are plotted based on loaded simulation results identical to those presented in the paper. 
+
+### Scenario 1: Natives and Neobiota have similar trait distributions
+```{r plot_1, message = FALSE}
+## Test random scenario with no trait difference between natives and neophytes  ## Not run
+# simRandom<- simul.BNI(simulation.trait = "random", nreps = 10)
+
+plot.BNIsim(simRandom, type = c("Full"), color.option = "",color.bar = FALSE, diff.col.max = TRUE )
+mtext(3, text = "Scenario 1", outer= TRUE)
+
+```
+
+
+### Scenario 2: Neobiota have on average distinct trait values from natives
+
+```{r plot_2, message = FALSE}
+
+### Test effect of increasing trait differences between natives and aliens ## Not run
+# simTraitDif <- simul.BNI(nreps = 10,maxDT = 10 )
+
+plot.BNIsim(simTraitDif, type = "Full",  diff.col.max = FALSE )
+mtext(3, text = "Scenario 2: different mean", outer= TRUE)
+```
+
+
+
+### Scenario 3: Neobiota have on average more variable trait values than natives
+
+```{r plot_3a, message = FALSE}
+
+### Test effect of increasing differences in trait variance 
+# simSDDif <- simul.BNI(simulation.trait = "variance difference", maxDSD = 10,nreps = 10)
+
+plot.BNIsim(simSDDif , type = "Full", color.option = "SD")
+mtext(3, text = "Scenario 3a: higher SD", outer= TRUE)
+
+```
+
+We can even test the case when Natives already have a high variance, and neobiota can have vary from low variance to high variance:
+
+```{r plot_3b, message = FALSE}
+
+### Test effect of increasing SD differences between natives and aliens if natives have already a high variance
+# simSDDif.natSD <- simul.BNI(simulation.trait = "variance difference", sim.SD = 5, maxDSD = 10, nreps = 10)
+
+plot.BNIsim(simSDDif.natSD , type = "Full", color.option = "SD")
+mtext(3, text = "Scenario 3b: lower to higher SD", outer= TRUE)
+```
+
+### Scenario 4: Neobiota have both a distinct mean and a different variance than natives
+
+```{r plot_4a, message = FALSE}
+### Test effect of increasing trait and SD differences between natives and aliens
+#simbothDif <- simul.BNI(simulation.trait = "both different", maxDSD = 5, nreps = 10)
+
+plot.BNIsim(simbothDif , type = "Full",  color.option ="SD", which.bar = "together")
+mtext(3, text = "Scenario 4a: increase in mean and SD", outer= TRUE)
+```
+
+```{r plot_4b, message = FALSE}
+
+
+# simbothDif.inverse <- simul.BNI(simulation.trait = "both different", maxDSD = 5,maxDT = 10, sd.trend = "inverse", nreps = 10)
+
+plot.BNIsim(simbothDif.inverse , type = "Full",   color.option ="mean", which.bar = "inverse")
+mtext(3, text = "Scenario 4b: increase in mean, decrease in SD", outer= TRUE)
+
+```
