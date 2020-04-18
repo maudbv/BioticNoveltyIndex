@@ -1,19 +1,26 @@
-# Biotic Novelty Index: index calculation and simulation
+---
+title: "Case study 1"
+author: "Maud Bernard-Verdier"
+date: "4/18/2020"
+output: html_document
+---
 
-This repository is currently in development by Conrad Schittko and Maud Bernard-Verdier as part of a research project from the BIBS project in Berlin, Germany. This work is part of a manuscript in preparation.
+The following example replicates the first case study included in the article by Schittko, Bernard-verdier et al., published in Global Change Biology in 2020. 
 
-## Content of the repository:
+The Biotic Novelty Index (BNI) of 56 grassland commmunities in Berlin was evaluated based on vegetation surveys, and results were presented in **Figure 4**, replicated below.
 
-- *FUNCTION BNI.calc.R* : function calculating the Biotic Novelty Index (BNI)
-- *FUNCTION BNI simulation functions.R* : a set of functions to simulate communities and explore the behaviour of the BNI, and two functions for plotting results 
-- *Simulation testing.R* : R script to re-run the 9 different simulation scenarios from the article
+```{r, message=FALSE, comment = FALSE}
 
-## Example for case study #1
+source('BNI function.R')
+load("data/berlin.rda")
+
+bni <- BNI.calc(com = community, YSI = YSI$years_since_introduction, trait.mat = trait_matrix)
+```
 
 ```{r, echo=FALSE,message=FALSE, comment = FALSE, fig.width=8, fig.height=6}
 
 source('BNI function.R')
-load("berlin.rda")
+load("data/berlin.rda")
 
 bni <- BNI.calc(com = community, YSI = YSI$years_since_introduction, trait.mat = trait_matrix)
 
@@ -85,4 +92,8 @@ mtext( 3, adj = 0.05, line = -1, cex = 0.8,
 )
 
 ```
+
+**Figure 4**: Case study 1 – relationships between the percentage of sealed surface area in a 500 m buffer zone around the 56 urban grassland plots and (a) the BNI, (b) the number of non-native species, (c) Rao’s Q as a measure of functional diversity, and (d) the standardized BNI. Asterisks indicate statistical significance using linear models (```***``` = P < 0.001, ```**```= P < 0.01, ```*``` = P < 0.05, n.s. = P ≥ 0.05).
+
+
 
