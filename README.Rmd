@@ -1,0 +1,88 @@
+# Biotic Novelty Index: index calculation and simulation
+
+This repository is currently in development by Conrad Schittko and Maud Bernard-Verdier as part of a research project from the BIBS project in Berlin, Germany. This work is part of a manuscript in preparation.
+
+## Content of the repository:
+
+- *FUNCTION BNI.calc.R* : function calculating the Biotic Novelty Index (BNI)
+- *FUNCTION BNI simulation functions.R* : a set of functions to simulate communities and explore the behaviour of the BNI, and two functions for plotting results 
+- *Simulation testing.R* : R script to re-run the 9 different simulation scenarios from the article
+
+## Example for case study #1
+
+```{r, echo=FALSE,message=FALSE, comment = FALSE, fig.width=8, fig.height=6}
+
+source('BNI function.R')
+load("berlin.rda")
+
+bni <- BNI.calc(com = community, YSI = YSI$years_since_introduction, trait.mat = trait_matrix)
+
+result_table <- cbind(bni$index, environment)
+
+# Useful function for plotting significance stars:
+p2star <- function(x, marginal=F, quantiles=NULL) {
+  # transforming p values into stars
+  # x : a p value 
+  s<-NA
+  x <- as.numeric(x)
+  if(!is.na(x)){
+    if (!is.null(quantiles)) q<-quantiles
+    else q<-c(0.1,0.05,0.01,0.001)
+    if (x>q[2]) s<-'ns'
+    if(marginal) if (x<q[1]) s <-'a'
+    if (x<=q[2]) s<-'*'
+    if (x<=q[3]) s<-'**'
+    if (x<=q[4]) s<-'***'
+  }
+  return(s)
+} 
+
+# Replicate Figure 4: ####
+par (mfrow = c(2,2), mar = c(4,4, 2,1))
+
+plot(BNI~Seal_500, data = result_table, pch = 20,
+     xlab = "% Sealing", ylab = "Biotic Novelty Index (BNI)")
+f <- lm(BNI ~ Seal_500, data = result_table)
+abline(f, col = "red")
+mtext( 3, adj = 0.05, line = -1, cex = 0.8,
+       text = paste("R2 =",
+                    round(summary(f)$r.squared, 2),
+                    p2star(summary(f)$coefficients[2,4], marginal = FALSE)
+       )
+)
+
+plot(SR_exo ~ Seal_500, data = result_table, pch = 20,
+     xlab = "% Sealing", ylab = "Number of non-native species")
+f <- lm(SR_exo ~ Seal_500, data = result_table)
+mtext( 3, adj = 0.05, line = -1, cex = 0.8,
+       text = paste("R2 =",
+                    round(summary(f)$r.squared, 2),
+                    p2star(summary(f)$coefficients[2,4], marginal = FALSE)
+       )
+)
+
+plot(RaoQ ~ Seal_500, data = result_table, pch = 20,
+     xlab = "% Sealing", ylab = "Number of non-native species")
+f <- lm(RaoQ ~ Seal_500, data = result_table)
+abline(f, col = "red")
+mtext( 3, adj = 0.05, line = -1, cex = 0.8,
+       text = paste("R2 =",
+                    round(summary(f)$r.squared, 2),
+                    p2star(summary(f)$coefficients[2,4], marginal = FALSE)
+       )
+)
+
+
+plot(BNIs ~ Seal_500, data = result_table, pch = 20,
+     xlab = "% Sealing", ylab = "Number of non-native species")
+f <- lm(BNIs ~ Seal_500, data = result_table)
+abline(f, col = "red")
+mtext( 3, adj = 0.05, line = -1, cex = 0.8,
+       text = paste("R2 =",
+                    round(summary(f)$r.squared, 2),
+                    p2star(summary(f)$coefficients[2,4], marginal = FALSE)
+       )
+)
+
+```
+
