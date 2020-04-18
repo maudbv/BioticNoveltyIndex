@@ -2,7 +2,8 @@
 title: "Case study 1"
 author: "Maud Bernard-Verdier"
 date: "4/18/2020"
-output: html_document
+output:
+  html_document: default
 ---
 
 The following example replicates the first case study included in the article by Schittko, Bernard-verdier et al., published in Global Change Biology in 2020. 
