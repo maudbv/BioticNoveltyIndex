@@ -1,11 +1,14 @@
 # Simulations testing the range of BNI, BNIs and Rao's Q values
 # This script will reproduce the main figures in the Supplementary material 2
-# of the manuscript by Schittko, Bernard-Verdier et al., in revision for GCB.
+# of the manuscript by Schittko, Bernard-Verdier et al., 2020, GCB.
 
 # Load the necessary functions:
 source("FUNCTION BNI simulation functions.R")
 source("BNI function.R")
 
+# Load packages
+library(vegan)
+library(FD)
 
 #___________________________________________________________#
 #  Tested TRAIT scenarios                                ####
