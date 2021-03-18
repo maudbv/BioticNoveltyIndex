@@ -1,37 +1,28 @@
-## Welcome to GitHub Pages
+# Presenting the Biotic Novelty Index
 
-You can use the [editor on GitHub](https://github.com/maudbv/BioticNoveltyIndex/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
+This repository provides the base R code and example applications for the following article:
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+Conrad Schittko & Maud Bernard-Verdier, Tina Heger, Sascha Buchholz, Ingo Kowarik, Moritz von der Lippe, Birgit Seitz, Jasmin Joshi & Jonathan M. Jeschke. A multidimensional framework for measuring biotic novelty: How novel is a community? (2020) Global Change Biology, 26, 4401-4417. https://doi.org/10.1111/gcb.15140 (open access)
 
-### Markdown
+[fig S2 5](https://user-images.githubusercontent.com/6454302/111621681-8fd20400-87e8-11eb-8301-3c3e236bf0bb.jpeg)
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+### Content :
 
-```markdown
-Syntax highlighted code block
+    FUNCTION BNI.calc.R : function BNI.calc calculating the Biotic Novelty Index (BNI)
 
-# Header 1
-## Header 2
-### Header 3
+    FUNCTION BNI simulation functions.R : a set of functions to simulate communities and explore the behaviour of the BNI, and two functions for plotting results
 
-- Bulleted
-- List
+    Simulation testing.R : R script to run the 9 different simulation scenarios from the article
 
-1. Numbered
-2. List
+    Case study 1.Rmd : R markdown document replicating the case study 1 on anonymized data
 
-**Bold** and _Italic_ and `Code` text
+    /data : example data folder
+        berlin.rda : anonymized data for case study 1
 
-[Link](url) and ![Image](src)
-```
+### Dependencies
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
+The code makes use of R packages "vegan" (version 2.5-5) and "FD"(version 1.0-12), and other dependencies from these packages.
 
-### Jekyll Themes
+### License
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/maudbv/BioticNoveltyIndex/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
+All R code in this repository is licensed under the MIT license. However, we retain all rights for the content of the /data folder.!
