@@ -4,6 +4,9 @@ This repository provides the base R code and example applications for the follow
 
 **Conrad Schittko** & **Maud Bernard-Verdier**, Tina Heger, Sascha Buchholz, Ingo  Kowarik, Moritz von der Lippe, Birgit Seitz, Jasmin Joshi  & Jonathan M. Jeschke.  A multidimensional framework for measuring biotic novelty: How novel is a community? (2020) *Global Change Biology*, 26, 4401-4417. https://doi.org/10.1111/gcb.15140 (open access)
 
+![fig S2 5](https://user-images.githubusercontent.com/6454302/111621681-8fd20400-87e8-11eb-8301-3c3e236bf0bb.jpeg)
+
+
 ### Content :
 
 - *FUNCTION BNI.calc.R* : function *BNI.calc* calculating the Biotic Novelty Index (BNI)
